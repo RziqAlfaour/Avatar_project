@@ -1,0 +1,60 @@
+C:\Users\DELL\source\repos\Avatar_project\obj\Debug\net8.0\Avatar_project.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DELL\source\repos\Avatar_project\obj\Debug\net8.0\Avatar_project.AssemblyInfoInputs.cache
+C:\Users\DELL\source\repos\Avatar_project\obj\Debug\net8.0\Avatar_project.AssemblyInfo.cs
+C:\Users\DELL\source\repos\Avatar_project\obj\Debug\net8.0\Avatar_project.csproj.CoreCompileInputs.cache
+C:\Users\DELL\source\repos\Avatar_project\obj\Debug\net8.0\Avatar_project.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\DELL\source\repos\Avatar_project\obj\Debug\net8.0\Avatar_project.RazorAssemblyInfo.cache
+C:\Users\DELL\source\repos\Avatar_project\obj\Debug\net8.0\Avatar_project.RazorAssemblyInfo.cs
+C:\Users\DELL\source\repos\Avatar_project\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\DELL\source\repos\Avatar_project\bin\Debug\net8.0\appsettings.json
+C:\Users\DELL\source\repos\Avatar_project\bin\Debug\net8.0\Avatar_project.staticwebassets.runtime.json
+C:\Users\DELL\source\repos\Avatar_project\bin\Debug\net8.0\Avatar_project.exe
+C:\Users\DELL\source\repos\Avatar_project\bin\Debug\net8.0\Avatar_project.deps.json
+C:\Users\DELL\source\repos\Avatar_project\bin\Debug\net8.0\Avatar_project.runtimeconfig.json
+C:\Users\DELL\source\repos\Avatar_project\bin\Debug\net8.0\Avatar_project.dll
+C:\Users\DELL\source\repos\Avatar_project\bin\Debug\net8.0\Avatar_project.pdb
+C:\Users\DELL\source\repos\Avatar_project\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\DELL\source\repos\Avatar_project\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\DELL\source\repos\Avatar_project\obj\Debug\net8.0\staticwebassets\msbuild.Avatar_project.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\DELL\source\repos\Avatar_project\obj\Debug\net8.0\staticwebassets\msbuild.build.Avatar_project.props
+C:\Users\DELL\source\repos\Avatar_project\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Avatar_project.props
+C:\Users\DELL\source\repos\Avatar_project\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Avatar_project.props
+C:\Users\DELL\source\repos\Avatar_project\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\DELL\source\repos\Avatar_project\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\DELL\source\repos\Avatar_project\obj\Debug\net8.0\scopedcss\bundle\Avatar_project.styles.css
+C:\Users\DELL\source\repos\Avatar_project\obj\Debug\net8.0\scopedcss\projectbundle\Avatar_project.bundle.scp.css
+C:\Users\DELL\source\repos\Avatar_project\obj\Debug\net8.0\Avatar_project.dll
+C:\Users\DELL\source\repos\Avatar_project\obj\Debug\net8.0\refint\Avatar_project.dll
+C:\Users\DELL\source\repos\Avatar_project\obj\Debug\net8.0\Avatar_project.pdb
+C:\Users\DELL\source\repos\Avatar_project\obj\Debug\net8.0\Avatar_project.genruntimeconfig.cache
+C:\Users\DELL\source\repos\Avatar_project\obj\Debug\net8.0\ref\Avatar_project.dll
+C:\Users\Rizq\Desktop\مشروع لارا\obj\Debug\net8.0\Avatar_project.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Rizq\Desktop\مشروع لارا\obj\Debug\net8.0\Avatar_project.AssemblyInfoInputs.cache
+C:\Users\Rizq\Desktop\مشروع لارا\obj\Debug\net8.0\Avatar_project.AssemblyInfo.cs
+C:\Users\Rizq\Desktop\مشروع لارا\obj\Debug\net8.0\Avatar_project.csproj.CoreCompileInputs.cache
+C:\Users\Rizq\Desktop\مشروع لارا\obj\Debug\net8.0\Avatar_project.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Rizq\Desktop\مشروع لارا\obj\Debug\net8.0\Avatar_project.RazorAssemblyInfo.cache
+C:\Users\Rizq\Desktop\مشروع لارا\obj\Debug\net8.0\Avatar_project.RazorAssemblyInfo.cs
+C:\Users\Rizq\Desktop\مشروع لارا\obj\Debug\net8.0\Avatar_project.dll
+C:\Users\Rizq\Desktop\مشروع لارا\obj\Debug\net8.0\refint\Avatar_project.dll
+C:\Users\Rizq\Desktop\مشروع لارا\obj\Debug\net8.0\Avatar_project.pdb
+C:\Users\Rizq\Desktop\مشروع لارا\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\Rizq\Desktop\مشروع لارا\bin\Debug\net8.0\appsettings.json
+C:\Users\Rizq\Desktop\مشروع لارا\bin\Debug\net8.0\Avatar_project.staticwebassets.runtime.json
+C:\Users\Rizq\Desktop\مشروع لارا\bin\Debug\net8.0\Avatar_project.exe
+C:\Users\Rizq\Desktop\مشروع لارا\bin\Debug\net8.0\Avatar_project.deps.json
+C:\Users\Rizq\Desktop\مشروع لارا\bin\Debug\net8.0\Avatar_project.runtimeconfig.json
+C:\Users\Rizq\Desktop\مشروع لارا\bin\Debug\net8.0\Avatar_project.dll
+C:\Users\Rizq\Desktop\مشروع لارا\bin\Debug\net8.0\Avatar_project.pdb
+C:\Users\Rizq\Desktop\مشروع لارا\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\Rizq\Desktop\مشروع لارا\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\Rizq\Desktop\مشروع لارا\obj\Debug\net8.0\staticwebassets\msbuild.Avatar_project.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Rizq\Desktop\مشروع لارا\obj\Debug\net8.0\staticwebassets\msbuild.build.Avatar_project.props
+C:\Users\Rizq\Desktop\مشروع لارا\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Avatar_project.props
+C:\Users\Rizq\Desktop\مشروع لارا\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Avatar_project.props
+C:\Users\Rizq\Desktop\مشروع لارا\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\Rizq\Desktop\مشروع لارا\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\Rizq\Desktop\مشروع لارا\obj\Debug\net8.0\scopedcss\bundle\Avatar_project.styles.css
+C:\Users\Rizq\Desktop\مشروع لارا\obj\Debug\net8.0\scopedcss\projectbundle\Avatar_project.bundle.scp.css
+C:\Users\Rizq\Desktop\مشروع لارا\obj\Debug\net8.0\Avatar_project.genruntimeconfig.cache
+C:\Users\Rizq\Desktop\مشروع لارا\obj\Debug\net8.0\ref\Avatar_project.dll

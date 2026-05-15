@@ -1,0 +1,390 @@
+﻿@model HomeViewModel
+
+@functions {
+    string Average(List<int> arr)
+    {
+        if (arr == null || !arr.Any()) return "0.0";
+        return arr.Average().ToString("0.0");
+    }
+
+    int Highest(List<int> arr)
+    {
+        if (arr == null || !arr.Any()) return 0;
+        return arr.Max();
+    }
+}
+
+@{
+    var allMovieRatings = Model.MovieRatings.Select(x => x.Rating).ToList();
+    var averageRating = allMovieRatings.Any() ? allMovieRatings.Average().ToString("0.0") : "0.0";
+    var highestRating = allMovieRatings.Any() ? allMovieRatings.Max() : 0;
+    var totalRatings = allMovieRatings.Count;
+}
+
+<a href="#mainContent" class="skip-link">Skip to content</a>
+
+<div class="page-bg"></div>
+
+<header class="hero-header">
+    <nav class="navbar">
+        <a href="#" class="logo">AVATAR</a>
+
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#characters">Characters</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#favorites">Favorites</a></li>
+            <li><a href="#admin">Admin</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">🌙</button>
+
+            <form asp-action="ToggleAdmin" method="post" class="admin-login-form">
+                <input type="password" name="password" placeholder="admin password" class="admin-pass-input" />
+                <button type="submit" id="loginToggle" class="primary-btn small-btn">
+                    @(Model.IsAdmin ? "Logout Admin" : "Login as Admin")
+                </button>
+            </form>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-text glass-card">
+            <p class="eyebrow">Pandora Experience</p>
+            <h1>AVATAR</h1>
+            <p>
+                Explore the world of Pandora, discover iconic characters, rate them,
+                comment on them, and manage content through a complete interactive project.
+            </p>
+            <div class="hero-buttons">
+                <a href="#characters" class="primary-btn">Explore Characters</a>
+                <a href="#admin" class="secondary-btn">Open Dashboard</a>
+            </div>
+        </div>
+
+        <div class="hero-stats glass-card">
+            <div class="stat-box">
+                <span id="charactersCount">@Model.Characters.Count</span>
+                <p>Characters</p>
+            </div>
+            <div class="stat-box">
+                <span id="commentsCount">@Model.Comments.Count</span>
+                <p>Comments</p>
+            </div>
+            <div class="stat-box">
+                <span id="topRatedValue">@highestRating</span>
+                <p>Top Rating</p>
+            </div>
+        </div>
+    </section>
+</header>
+
+<main id="mainContent" class="main-layout">
+    <section id="characters" class="section-block">
+        <div class="section-head">
+            <div>
+                <p class="section-tag">Search + Rating + Favorites</p>
+                <h2>Characters</h2>
+            </div>
+
+            <div class="controls">
+                <input type="text" id="searchInput" placeholder="Search character... e.g. Jake" />
+                <select id="roleFilter">
+                    <option value="all">All Roles</option>
+                    <option value="hero">Hero</option>
+                    <option value="leader">Leader</option>
+                    <option value="scientist">Scientist</option>
+                    <option value="villain">Villain</option>
+                    <option value="pilot">Pilot</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="charactersContainer" class="characters-grid">
+            @foreach (var chara in Model.Characters)
+            {
+                var isFavorite = Model.Favorites.Contains(chara.Id);
+
+                    <article class="character-card character-item"
+                             data-name="@chara.Name.ToLower()"
+                             data-role="@chara.Role">
+                        <div class="character-image-wrap">
+                            <img src="~/images/@chara.Image" alt="@chara.Name" class="character-image" />
+                        </div>
+
+                        <div class="character-body">
+                            <div class="character-top">
+                                <div>
+                                    <h3 class="character-name">@chara.Name</h3>
+                                    <span class="role-badge">@chara.Role</span>
+                                </div>
+                            </div>
+
+                            <p>@chara.Description</p>
+
+                            <div class="rating-stars">
+                            @for (int i = 1; i <= 5; i++)
+                            {
+                                        <form asp-action="RateCharacter" method="post">
+                                            <input type="hidden" name="characterId" value="@chara.Id" />
+                                            <input type="hidden" name="value" value="@i" />
+                                            <button class="star-btn" type="submit" title="Rate @i">⭐</button>
+                                        </form>
+                            }
+                            </div>
+
+                            <div class="card-meta">
+                                <span>Average: @Average(chara.Ratings)</span>
+                                <span>Highest: @Highest(chara.Ratings)</span>
+                            </div>
+
+                            <div class="card-actions">
+                                <form asp-action="ToggleFavorite" method="post">
+                                    <input type="hidden" name="characterId" value="@chara.Id" />
+                                    <button class="action-btn favorite @(isFavorite ? "active" : "")" type="submit">
+                                    @(isFavorite ? "❤️ Remove Favorite" : "🤍 Add Favorite")
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </article>
+            }
+        </div>
+
+        <div class="pagination" id="pagination"></div>
+    </section>
+
+    <section id="reviews" class="section-block two-columns">
+        <div class="glass-card panel">
+            <div class="section-head small">
+                <div>
+                    <p class="section-tag">Movie Rating</p>
+                    <h2>Rate The Film</h2>
+                </div>
+            </div>
+
+            <form asp-action="AddMovieRating" method="post" id="ratingForm" class="stack-form">
+                <label for="movieRaterName">Your Name</label>
+                <input type="text" id="movieRaterName" name="user" placeholder="Enter your name" required />
+
+                <label for="movieRating">Choose Rating</label>
+                <select id="movieRating" name="rating" required>
+                    <option value="">Select from 1 to 5</option>
+                    <option value="1">1 Star</option>
+                    <option value="2">2 Stars</option>
+                    <option value="3">3 Stars</option>
+                    <option value="4">4 Stars</option>
+                    <option value="5">5 Stars</option>
+                </select>
+
+                <button type="submit" class="primary-btn">Submit Rating</button>
+            </form>
+
+            <div class="rating-summary">
+                <div class="summary-card">
+                    <h3>Average Rating</h3>
+                    <p id="averageRating">@averageRating</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Highest Rating</h3>
+                    <p id="highestRating">@highestRating</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Total Votes</h3>
+                    <p id="totalRatings">@totalRatings</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-card panel">
+            <div class="section-head small">
+                <div>
+                    <p class="section-tag">Comments</p>
+                    <h2>User Reviews</h2>
+                </div>
+            </div>
+
+            <form asp-action="AddComment" method="post" id="commentForm" class="stack-form">
+                <label for="commentUser">Your Name</label>
+                <input type="text" id="commentUser" name="user" placeholder="Enter your name" required />
+
+                <label for="commentText">Your Comment</label>
+                <textarea id="commentText" name="text" rows="4" placeholder="Write your comment..." required></textarea>
+
+                <button type="submit" class="primary-btn">Add Comment</button>
+            </form>
+
+            <div id="commentsList" class="comments-list">
+                @if (Model.Comments.Any())
+                {
+                    @foreach (var comment in Model.Comments.OrderByDescending(x => x.Id))
+                    {
+                                <div class="comment-item">
+                                    <h4>@comment.User</h4>
+                                    <p>@comment.Text</p>
+                                    <form asp-action="DeleteComment" method="post">
+                                        <input type="hidden" name="id" value="@comment.Id" />
+                                        <button type="submit">Delete My Comment</button>
+                                    </form>
+                                </div>
+                    }
+                }
+                else
+                {
+                        <div class="empty-box">No comments yet.</div>
+                }
+            </div>
+        </div>
+    </section>
+
+    <section id="favorites" class="section-block">
+        <div class="section-head">
+            <div>
+                <p class="section-tag">Favorites System</p>
+                <h2>Favorite Characters</h2>
+            </div>
+        </div>
+
+        <div id="favoritesContainer" class="favorites-grid">
+            @{
+                var favoriteCharacters = Model.Characters.Where(c => Model.Favorites.Contains(c.Id)).ToList();
+            }
+
+            @if (favoriteCharacters.Any())
+            {
+                @foreach (var chara in favoriteCharacters)
+                {
+                            <article class="character-card">
+                                <div class="character-image-wrap">
+                                    <img src="~/images/@chara.Image" alt="@chara.Name" class="character-image" />
+                                </div>
+
+                                <div class="character-body">
+                                    <h3 class="character-name">@chara.Name</h3>
+                                    <p>@chara.Description</p>
+
+                                    <form asp-action="ToggleFavorite" method="post">
+                                        <input type="hidden" name="characterId" value="@chara.Id" />
+                                        <button class="action-btn favorite active" type="submit">
+                                            ❤️ Remove Favorite
+                                        </button>
+                                    </form>
+                                </div>
+                            </article>
+                }
+            }
+            else
+            {
+                    <div class="empty-box">No favorite characters yet.</div>
+            }
+        </div>
+    </section>
+
+    <section id="admin" class="section-block">
+        <div class="section-head">
+            <div>
+                <p class="section-tag">Admin Dashboard</p>
+                <h2>Manage Characters</h2>
+            </div>
+            <span id="adminStatus" class="status-badge">
+                @(Model.IsAdmin ? "Admin Mode" : "User Mode")
+            </span>
+        </div>
+
+        <div class="admin-layout">
+            <div class="glass-card panel">
+                <h3 class="panel-title">Character Form</h3>
+
+                <form asp-action="SaveCharacter" method="post" id="characterForm" class="stack-form">
+                    <input type="hidden" id="characterId" name="Id" />
+
+                    <label for="characterName">Character Name</label>
+                    <input type="text" id="characterName" name="Name" placeholder="Character name" required />
+
+                    <label for="characterRole">Role</label>
+                    <select id="characterRole" name="Role" required>
+                        <option value="">Select role</option>
+                        <option value="hero">Hero</option>
+                        <option value="leader">Leader</option>
+                        <option value="scientist">Scientist</option>
+                        <option value="villain">Villain</option>
+                        <option value="pilot">Pilot</option>
+                    </select>
+
+                    <label for="characterDescription">Description</label>
+                    <textarea id="characterDescription" name="Description" rows="4" placeholder="Short description" required></textarea>
+
+                    <label for="characterImage">Image Name</label>
+                    <input type="text" id="characterImage" name="Image" placeholder="jake.jpg" required />
+
+                    <div class="form-actions">
+                        <button type="submit" class="primary-btn">Save Character</button>
+                        <button type="button" id="resetFormBtn" class="secondary-btn">Reset</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="glass-card panel">
+                <h3 class="panel-title">Dashboard</h3>
+
+                <div class="dashboard-stats">
+                    <div class="summary-card">
+                        <h4>Total Characters</h4>
+                        <p id="dashCharacters">@Model.Characters.Count</p>
+                    </div>
+                    <div class="summary-card">
+                        <h4>Total Comments</h4>
+                        <p id="dashComments">@Model.Comments.Count</p>
+                    </div>
+                    <div class="summary-card">
+                        <h4>Top Rated</h4>
+                        <p id="dashTopRated">@highestRating</p>
+                    </div>
+                </div>
+
+                <div class="admin-table-wrap">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Role</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminCharactersTable">
+                            @foreach (var chara in Model.Characters)
+                            {
+                                    <tr>
+                                        <td>@chara.Name</td>
+                                        <td>@chara.Role</td>
+                                        <td>
+                                            <div class="table-actions">
+                                                <button class="edit-btn edit-character-btn"
+                                                        type="button"
+                                                        data-id="@chara.Id"
+                                                        data-name="@chara.Name"
+                                                        data-role="@chara.Role"
+                                                        data-description="@chara.Description"
+                                                        data-image="@chara.Image"
+                                            @(!Model.IsAdmin ? "disabled" : null)>
+                                                    Edit
+                                                </button>
+
+                                                <form asp-action="DeleteCharacter" method="post">
+                                                    <input type="hidden" name="id" value="@chara.Id" />
+                                                    <button class="delete-btn" type="submit" @(!Model.IsAdmin ? "disabled" : null)>
+                                                        Delete
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
