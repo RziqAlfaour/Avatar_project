@@ -1,6 +1,7 @@
 using Avatar_project.Models;
 using Avatar_project.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http; // For Session
 
 namespace Avatar_project.Controllers
 {
@@ -15,6 +16,9 @@ namespace Avatar_project.Controllers
 
         public IActionResult Index()
         {
+            // Read Username from Session (if logged in)
+            ViewBag.Username = HttpContext.Session.GetString("Username");
+
             var vm = _avatarService.GetHomeData();
             return View(vm);
         }

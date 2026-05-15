@@ -1,4 +1,4 @@
-﻿@model HomeViewModel
+@model HomeViewModel
 
 @functions {
     string Average(List<int> arr)
@@ -37,8 +37,19 @@
             <li><a href="#admin">Admin</a></li>
         </ul>
 
-        <div class="nav-actions">
+        <div class="nav-actions" style="display: flex; align-items: center; gap: 10px;">
             <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">🌙</button>
+
+            @if (ViewBag.Username != null)
+            {
+                <span style="color: white; font-weight: bold;">Welcome, @ViewBag.Username!</span>
+                <a asp-controller="Account" asp-action="Logout" class="secondary-btn small-btn">Logout</a>
+            }
+            else
+            {
+                <a asp-controller="Account" asp-action="Login" class="primary-btn small-btn">Login</a>
+                <a asp-controller="Account" asp-action="Register" class="secondary-btn small-btn">Register</a>
+            }
 
             <form asp-action="ToggleAdmin" method="post" class="admin-login-form">
                 <input type="password" name="password" placeholder="admin password" class="admin-pass-input" />

@@ -1,0 +1,64 @@
+@model Avatar_project.Models.User
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow border-0 rounded-3">
+                <div class="card-header bg-primary text-white text-center py-3 rounded-top">
+                    <h4 class="mb-0">Sign In</h4>
+                </div>
+                <div class="card-body p-4">
+                    
+                    @if (ViewBag.ErrorMessage != null)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @ViewBag.ErrorMessage
+                        </div>
+                    }
+
+                    <form method="post" asp-controller="Account" asp-action="Login">
+                        
+                        <div class="form-group mb-3">
+                            <label asp-for="Username" class="form-label fw-bold">Username</label>
+                            <input asp-for="Username" id="loginUsername" class="form-control" type="text" placeholder="Enter your username" required />
+                        </div>
+                        
+                        <div class="form-group mb-4">
+                            <label asp-for="Password" class="form-label fw-bold">Password</label>
+                            <input asp-for="Password" id="loginPassword" class="form-control" type="password" placeholder="Enter your password" required />
+                        </div>
+                        
+                        <div class="d-grid mb-3">
+                            <button type="submit" class="btn btn-primary btn-lg">Login</button>
+                        </div>
+
+                    </form>
+
+                    <div class="text-center mt-3">
+                        <span class="text-muted">Don't have an account?</span> 
+                        <a asp-controller="Account" asp-action="Register" class="text-primary fw-bold text-decoration-none">Create one here</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Optional: Simple script to fill from LocalStorage if there is a recently registered user -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let usersStr = localStorage.getItem("avatar_users");
+        if (usersStr) {
+            let users = JSON.parse(usersStr);
+            if (users.length > 0) {
+                // Pre-fill the last registered user's username for convenience
+                let lastUser = users[users.length - 1];
+                document.getElementById('loginUsername').value = lastUser.username;
+            }
+        }
+    });
+</script>

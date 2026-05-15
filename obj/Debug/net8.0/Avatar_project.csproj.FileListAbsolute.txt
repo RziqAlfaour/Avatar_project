@@ -58,3 +58,4 @@ C:\Users\Rizq\Desktop\مشروع لارا\obj\Debug\net8.0\scopedcss\bundle\Avat
 C:\Users\Rizq\Desktop\مشروع لارا\obj\Debug\net8.0\scopedcss\projectbundle\Avatar_project.bundle.scp.css
 C:\Users\Rizq\Desktop\مشروع لارا\obj\Debug\net8.0\Avatar_project.genruntimeconfig.cache
 C:\Users\Rizq\Desktop\مشروع لارا\obj\Debug\net8.0\ref\Avatar_project.dll
+C:\Users\Rizq\Desktop\مشروع لارا\obj\Debug\net8.0\Avatar_project.sourcelink.json
