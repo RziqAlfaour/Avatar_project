@@ -26,52 +26,33 @@
 <div class="page-bg"></div>
 
 <header class="hero-header">
-    <nav class="navbar">
-        <a href="#" class="logo">AVATAR</a>
-
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#characters">Characters</a></li>
-            <li><a href="#reviews">Reviews</a></li>
-            <li><a href="#favorites">Favorites</a></li>
-            <li><a href="#admin">Admin</a></li>
-        </ul>
-
-        <div class="nav-actions" style="display: flex; align-items: center; gap: 10px;">
-            <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">🌙</button>
-
+    <section class="hero" id="home" style="margin-top: 1rem; border-radius: 1rem;">
+        <div class="hero-text glass-card">
+            <p class="eyebrow">Pandora Experience</p>
             @if (ViewBag.Username != null)
             {
-                <span style="color: white; font-weight: bold;">Welcome, @ViewBag.Username!</span>
-                <a asp-controller="Account" asp-action="Logout" class="secondary-btn small-btn">Logout</a>
+                <h1 style="font-size: 2.8rem; color: #00d4ff;">Welcome back, @ViewBag.Username!</h1>
+                <p>
+                    Ready to explore and rate your favorite characters in the Avatar Universe? 
+                    Manage your favorites and share your reviews.
+                </p>
+                <div class="hero-buttons mt-4">
+                    <a href="#characters" class="btn btn-primary rounded-pill px-4 me-2 border-0 shadow" style="background-color: #5b21b6;">Explore Characters</a>
+                    <a href="#admin" class="btn btn-outline-info rounded-pill px-4 border-2">Open Dashboard</a>
+                </div>
             }
             else
             {
-                <a asp-controller="Account" asp-action="Login" class="primary-btn small-btn">Login</a>
-                <a asp-controller="Account" asp-action="Register" class="secondary-btn small-btn">Register</a>
+                <h1 style="font-size: 3rem;">AVATAR</h1>
+                <p>
+                    Explore the world of Pandora, discover iconic characters, rate them,
+                    comment on them, and manage content through a complete interactive project.
+                </p>
+                <div class="hero-buttons mt-4">
+                    <a asp-controller="Account" asp-action="Login" class="btn btn-primary rounded-pill px-4 me-2 border-0 shadow" style="background-color: #5b21b6;">Login to Rate</a>
+                    <a asp-controller="Account" asp-action="Register" class="btn btn-outline-info rounded-pill px-4 border-2">Create Account</a>
+                </div>
             }
-
-            <form asp-action="ToggleAdmin" method="post" class="admin-login-form">
-                <input type="password" name="password" placeholder="admin password" class="admin-pass-input" />
-                <button type="submit" id="loginToggle" class="primary-btn small-btn">
-                    @(Model.IsAdmin ? "Logout Admin" : "Login as Admin")
-                </button>
-            </form>
-        </div>
-    </nav>
-
-    <section class="hero" id="home">
-        <div class="hero-text glass-card">
-            <p class="eyebrow">Pandora Experience</p>
-            <h1>AVATAR</h1>
-            <p>
-                Explore the world of Pandora, discover iconic characters, rate them,
-                comment on them, and manage content through a complete interactive project.
-            </p>
-            <div class="hero-buttons">
-                <a href="#characters" class="primary-btn">Explore Characters</a>
-                <a href="#admin" class="secondary-btn">Open Dashboard</a>
-            </div>
         </div>
 
         <div class="hero-stats glass-card">
@@ -298,9 +279,17 @@
                 <p class="section-tag">Admin Dashboard</p>
                 <h2>Manage Characters</h2>
             </div>
-            <span id="adminStatus" class="status-badge">
-                @(Model.IsAdmin ? "Admin Mode" : "User Mode")
-            </span>
+            <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+                <span id="adminStatus" class="status-badge">
+                    @(Model.IsAdmin ? "Admin Mode" : "User Mode")
+                </span>
+                <form asp-action="ToggleAdmin" method="post" class="d-flex align-items-center gap-2">
+                    <input type="password" name="password" placeholder="admin password" class="form-control form-control-sm bg-dark text-light border-secondary" style="width: 150px;" />
+                    <button type="submit" id="loginToggle" class="btn btn-sm btn-warning fw-bold">
+                        @(Model.IsAdmin ? "Exit Admin" : "Login Admin")
+                    </button>
+                </form>
+            </div>
         </div>
 
         <div class="admin-layout">
