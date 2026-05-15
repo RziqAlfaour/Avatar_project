@@ -3,14 +3,14 @@
     ViewData["Title"] = "Create Account";
 }
 
-<div class="row justify-content-center align-items-center" style="min-height: 75vh;">
+<div class="row justify-content-center align-items-center min-vh-100" style="margin-top: -5rem;">
     <div class="col-md-5">
-        <div class="card shadow-lg border-0 rounded-4">
-            <div class="card-header border-bottom-0 pt-4 pb-0 text-center bg-transparent">
-                <h3 class="mb-0 fw-bold" style="color: #00d4ff;"><i class="fa-solid fa-user-plus me-2"></i>Register</h3>
-                <p class="text-muted mt-2">Join the Avatar Universe</p>
-            </div>
-            <div class="card-body p-4 pt-3">
+        <div class="card shadow-lg border-0 rounded-4" style="background-color: #1a1d24;">
+            <div class="card-body p-5">
+                <div class="text-center mb-4">
+                    <h3 class="fw-bold" style="color: #00d4ff;"><i class="fa-solid fa-user-plus me-2"></i>Create your account</h3>
+                    <p class="text-muted mt-2">Join Avatar Universe to save and rate movies.</p>
+                </div>
                 
                 @if (ViewBag.RegistrationSuccess == true)
                 {
@@ -18,6 +18,7 @@
                         <i class="fa-solid fa-spinner fa-spin me-2"></i> Account created! Redirecting to login...
                     </div>
 
+                    <!-- Client-side script to simulate DB save to LocalStorage for this school project -->
                     <script>
                         let users = JSON.parse(localStorage.getItem("avatar_users") || "[]");
                         users.push({
@@ -33,7 +34,7 @@
                 }
                 else
                 {
-                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3 fw-bold"></div>
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger fw-bold" role="alert"></div>
 
                     <form method="post" asp-controller="Account" asp-action="Register">
                         
@@ -65,16 +66,16 @@
                         </div>
                         
                         <div class="d-grid mb-4">
-                            <button type="submit" class="btn btn-primary btn-lg rounded-pill fw-bold shadow-sm">
-                                Create Account <i class="fa-solid fa-user-check ms-1"></i>
+                            <button type="submit" class="btn btn-primary btn-lg rounded-pill fw-bold shadow-sm" style="background-color: #5b21b6; border-color: #5b21b6;">
+                                Create Account
                             </button>
                         </div>
                     </form>
                 }
 
-                <div class="text-center mt-2 border-top border-secondary pt-3">
+                <div class="text-center mt-2 border-top border-secondary pt-4">
                     <span class="text-muted">Already have an account?</span> 
-                    <a asp-controller="Account" asp-action="Login" class="text-info fw-bold text-decoration-none">Sign In here</a>
+                    <a asp-controller="Account" asp-action="Login" class="text-info fw-bold text-decoration-none ms-1">Sign in here.</a>
                 </div>
 
             </div>

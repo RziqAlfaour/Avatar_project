@@ -28,29 +28,27 @@
 <header class="hero-header">
     <section class="hero" id="home" style="margin-top: 1rem; border-radius: 1rem;">
         <div class="hero-text glass-card">
-            <p class="eyebrow">Pandora Experience</p>
+            <p class="eyebrow text-info fw-bold mb-2"><i class="fa-solid fa-film me-2"></i>Avatar Universe</p>
             @if (ViewBag.Username != null)
             {
-                <h1 style="font-size: 2.8rem; color: #00d4ff;">Welcome back, @ViewBag.Username!</h1>
-                <p>
-                    Ready to explore and rate your favorite characters in the Avatar Universe? 
-                    Manage your favorites and share your reviews.
+                <h1 style="font-size: 2.8rem; color: #f1f1f1; font-weight: 700;">Discover Your Next Favorite Movie</h1>
+                <p class="text-muted mt-3" style="font-size: 1.1rem;">
+                    Welcome back, <strong>@ViewBag.Username</strong>! Browse movies, track what you’ve watched, and rate your favorites.
                 </p>
                 <div class="hero-buttons mt-4">
-                    <a href="#characters" class="btn btn-primary rounded-pill px-4 me-2 border-0 shadow" style="background-color: #5b21b6;">Explore Characters</a>
-                    <a href="#admin" class="btn btn-outline-info rounded-pill px-4 border-2">Open Dashboard</a>
+                    <a href="#movies" class="btn btn-primary rounded-pill px-4 me-2 border-0 shadow-sm" style="background-color: #5b21b6;">Explore Movies</a>
+                    <a href="#characters" class="btn btn-outline-info rounded-pill px-4 border-2">View Characters</a>
                 </div>
             }
             else
             {
-                <h1 style="font-size: 3rem;">AVATAR</h1>
-                <p>
-                    Explore the world of Pandora, discover iconic characters, rate them,
-                    comment on them, and manage content through a complete interactive project.
+                <h1 style="font-size: 3rem; font-weight: 700;">Discover Your Next Favorite Movie</h1>
+                <p class="text-muted mt-3" style="font-size: 1.1rem;">
+                    Browse movies, track what you’ve watched, and rate your favorites. Sign in to get a personalized experience.
                 </p>
                 <div class="hero-buttons mt-4">
-                    <a asp-controller="Account" asp-action="Login" class="btn btn-primary rounded-pill px-4 me-2 border-0 shadow" style="background-color: #5b21b6;">Login to Rate</a>
-                    <a asp-controller="Account" asp-action="Register" class="btn btn-outline-info rounded-pill px-4 border-2">Create Account</a>
+                    <a asp-controller="Account" asp-action="Register" class="btn btn-primary rounded-pill px-4 me-2 border-0 shadow-sm" style="background-color: #5b21b6;">Get Started</a>
+                    <a asp-controller="Account" asp-action="Login" class="btn btn-outline-info rounded-pill px-4 border-2">Sign In</a>
                 </div>
             }
         </div>
@@ -72,8 +70,102 @@
     </section>
 </header>
 
-<main id="mainContent" class="main-layout">
-    <section id="characters" class="section-block">
+<main id="mainContent" class="main-layout mt-5">
+
+    <!-- NEW: Static Movies Section -->
+    <section id="movies" class="section-block mb-5">
+        <div class="section-head mb-4">
+            <div>
+                <p class="section-tag text-info fw-bold mb-1"><i class="fa-solid fa-fire me-2"></i>Trending</p>
+                <h2 class="fw-bold">Featured Titles</h2>
+            </div>
+        </div>
+        
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <!-- Movie 1 -->
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0 rounded-4" style="background-color: #1a1d24;">
+                    <div style="height: 200px; background: linear-gradient(45deg, #0f1115, #2a2d35); border-radius: 1rem 1rem 0 0;" class="d-flex justify-content-center align-items-center">
+                        <i class="fa-solid fa-film fa-3x text-secondary"></i>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="card-title fw-bold mb-0">Avatar</h5>
+                            <span class="badge bg-dark text-warning"><i class="fa-solid fa-star me-1"></i> 8.4</span>
+                        </div>
+                        <p class="text-muted small mb-2">2009 &bull; Sci-Fi/Action</p>
+                        <p class="card-text text-light" style="font-size: 0.9rem;">A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 pb-3 text-center">
+                        @if (ViewBag.Username != null)
+                        {
+                            <button class="btn btn-sm btn-outline-info rounded-pill px-3 w-100"><i class="fa-solid fa-plus me-1"></i> Add to Watchlist</button>
+                        }
+                        else
+                        {
+                            <a asp-controller="Account" asp-action="Login" class="btn btn-sm btn-outline-secondary rounded-pill px-3 w-100">Sign in to Rate</a>
+                        }
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Movie 2 -->
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0 rounded-4" style="background-color: #1a1d24;">
+                    <div style="height: 200px; background: linear-gradient(45deg, #1f1c2c, #928DAB); border-radius: 1rem 1rem 0 0;" class="d-flex justify-content-center align-items-center">
+                        <i class="fa-solid fa-image fa-3x text-light opacity-50"></i>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="card-title fw-bold mb-0">Avatar: The Way of Water</h5>
+                            <span class="badge bg-dark text-warning"><i class="fa-solid fa-star me-1"></i> 8.6</span>
+                        </div>
+                        <p class="text-muted small mb-2">2022 &bull; Sci-Fi/Action</p>
+                        <p class="card-text text-light" style="font-size: 0.9rem;">Jake Sully lives with his newfound family formed on the extrasolar moon Pandora. Once a familiar threat returns, Jake must work with Neytiri and the army of the Na'vi race to protect their home.</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 pb-3 text-center">
+                        @if (ViewBag.Username != null)
+                        {
+                            <button class="btn btn-sm btn-outline-info rounded-pill px-3 w-100"><i class="fa-solid fa-plus me-1"></i> Add to Watchlist</button>
+                        }
+                        else
+                        {
+                            <a asp-controller="Account" asp-action="Login" class="btn btn-sm btn-outline-secondary rounded-pill px-3 w-100">Sign in to Rate</a>
+                        }
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Movie 3 -->
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0 rounded-4" style="background-color: #1a1d24;">
+                    <div style="height: 200px; background: linear-gradient(45deg, #2c3e50, #3498db); border-radius: 1rem 1rem 0 0;" class="d-flex justify-content-center align-items-center">
+                        <i class="fa-solid fa-video fa-3x text-light opacity-50"></i>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="card-title fw-bold mb-0">Avatar: Fire and Ash</h5>
+                            <span class="badge bg-dark text-muted"><i class="fa-solid fa-clock me-1"></i> TBD</span>
+                        </div>
+                        <p class="text-muted small mb-2">2025 &bull; Sci-Fi/Adventure</p>
+                        <p class="card-text text-light" style="font-size: 0.9rem;">The upcoming third installment in the Avatar film series. Get ready for new adventures exploring the volatile ash tribes of Pandora.</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 pb-3 text-center">
+                        @if (ViewBag.Username != null)
+                        {
+                            <button class="btn btn-sm btn-outline-info rounded-pill px-3 w-100"><i class="fa-regular fa-bell me-1"></i> Remind Me</button>
+                        }
+                        else
+                        {
+                            <a asp-controller="Account" asp-action="Login" class="btn btn-sm btn-outline-secondary rounded-pill px-3 w-100">Sign in for Updates</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="characters" class="section-block border-top border-secondary pt-5">
         <div class="section-head">
             <div>
                 <p class="section-tag">Search + Rating + Favorites</p>
